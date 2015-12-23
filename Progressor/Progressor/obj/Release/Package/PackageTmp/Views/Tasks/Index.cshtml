@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Progressor.Models.Task>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.userID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.progressIndex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.progressMax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dueDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.createDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.startDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.completeDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.difficultyIndex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.importanceIndex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.taskStatus)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.userID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.progressIndex)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.progressMax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.createDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.startDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.completeDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.difficultyIndex)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.importanceIndex)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.taskStatus)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.taskID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.taskID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.taskID })
+        </td>
+    </tr>
+}
+
+</table>

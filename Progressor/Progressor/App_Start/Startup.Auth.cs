@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using Progressor.Models;
+using Microsoft.Owin.Security.Facebook;
+using System.Net.Http;
 
 namespace Progressor
 {
@@ -34,7 +36,7 @@ namespace Progressor
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
@@ -54,15 +56,40 @@ namespace Progressor
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            app.UseFacebookAuthentication(
-               appId: "1129241220420047",
-               appSecret: "5dc1a4c51255c8a8073159cb293481a6");
+            //var option = new FacebookAuthenticationExtensions()
+            //{
+            //    appId: "1129241220420047",
+            //   appSecret: "5dc1a4c51255c8a8073159cb293481a6"
+            //};
+            var facebookOptions = new FacebookAuthenticationOptions()
+            {
+                AppId = "1129241220420047",
+                AppSecret = "5dc1a4c51255c8a8073159cb293481a6",
+                BackchannelHttpHandler = new FacebookBackChannelHandler(),
+                UserInformationEndpoint = "https://graph.facebook.com/v2.4/me?fields=id,name,email,first_name,last_name,location"
+            };
+            facebookOptions.Scope.Add("email");
+
+            app.UseFacebookAuthentication(facebookOptions);
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+        }
+    }
+    public class FacebookBackChannelHandler : HttpClientHandler
+    {
+        protected override async System.Threading.Tasks.Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
+        {
+            // Replace the RequestUri so it's not malformed
+            if (!request.RequestUri.AbsolutePath.Contains("/oauth"))
+            {
+                request.RequestUri = new Uri(request.RequestUri.AbsoluteUri.Replace("?access_token", "&access_token"));
+            }
+
+            return await base.SendAsync(request, cancellationToken);
         }
     }
 }

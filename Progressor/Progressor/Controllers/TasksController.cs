@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Progressor.Models;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace Progressor.Controllers
 {
@@ -46,16 +48,30 @@ namespace Progressor.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "taskID,userID,name,progressIndex,progressMax,dueDate,createDate,startDate,completeDate,difficultyIndex,importanceIndex,taskStatus")] Task task)
+        public ActionResult Create(NewTaskViewModel newtask)
         {
             if (ModelState.IsValid)
             {
-                db.Tasks.Add(task);
-                db.SaveChanges();
+                db.Tasks.Add(Task.createNewTask(newtask));
+                try {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException dbEx)
+                {
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            Trace.TraceInformation("Property: {0} Error: {1}",
+                                                    validationError.PropertyName,
+                                                    validationError.ErrorMessage);
+                        }
+                    }
+                }
                 return RedirectToAction("Index");
             }
 
-            return View(task);
+            return View(Task.createNewTask(newtask));
         }
 
         // GET: Tasks/Edit/5

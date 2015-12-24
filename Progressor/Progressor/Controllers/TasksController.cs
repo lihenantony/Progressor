@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Progressor.Models;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using Microsoft.AspNet.Identity;
 
 namespace Progressor.Controllers
 {
@@ -19,7 +20,16 @@ namespace Progressor.Controllers
         // GET: Tasks
         public ActionResult Index()
         {
-            return View(db.Tasks.ToList());
+            List<Task> tasklist = new List<Task>();
+            foreach (Task t in db.Tasks.ToList())
+            {
+                if (t.userID == HttpContext.User.Identity.GetUserId())
+                {
+                    tasklist.Add(t);
+                }
+            }
+            tasklist.Sort();
+            return View(tasklist);
         }
 
         // GET: Tasks/Details/5

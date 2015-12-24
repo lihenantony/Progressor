@@ -11,7 +11,7 @@ namespace Progressor.Models
     public class Task
     {
         [Key]
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string userID { get; set; }
         public string name { get; set; }
         public int progressIndex { get; set; }
@@ -57,7 +57,7 @@ namespace Progressor.Models
     public class NewTaskViewModel
     {
         [Key]
-        public string ID { get; set; }
+        public int ID { get; set; }
 
         [Required]
         [StringLength(20, ErrorMessage = "Exceed maximum length (20 characters)")]

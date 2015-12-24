@@ -8,7 +8,7 @@ namespace Progressor.Models
 {
     public class Class1
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string name { get; set; }
         public string value { get; set; }
     }

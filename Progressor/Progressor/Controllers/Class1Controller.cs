@@ -7,127 +7,110 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Progressor.Models;
-using System.Data.Entity.Validation;
-using System.Diagnostics;
 
 namespace Progressor.Controllers
 {
-    public class TasksController : Controller
+    public class Class1Controller : Controller
     {
-        private TaskDBContext db = new TaskDBContext();
+        private Class1DBContext db = new Class1DBContext();
 
-        // GET: Tasks
+        // GET: Class1
         public ActionResult Index()
         {
-            return View(db.Tasks.ToList());
+            return View(db.Class1s.ToList());
         }
 
-        // GET: Tasks/Details/5
+        // GET: Class1/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            Task task = db.Tasks.Find(id);
-            if (task == null)
+            Class1 class1 = db.Class1s.Find(id);
+            if (class1 == null)
             {
                 return HttpNotFound();
             }
-            return View(task);
+            return View(class1);
         }
 
-        // GET: Tasks/Create
+        // GET: Class1/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Tasks/Create
+        // POST: Class1/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(NewTaskViewModel newtask)
+        public ActionResult Create([Bind(Include = "ID,name,value")] Class1 class1)
         {
             if (ModelState.IsValid)
             {
-                db.Tasks.Add(Task.createNewTask(newtask));
-                try {
-                    db.SaveChanges();
-                }
-                catch (DbEntityValidationException dbEx)
-                {
-                    foreach (var validationErrors in dbEx.EntityValidationErrors)
-                    {
-                        foreach (var validationError in validationErrors.ValidationErrors)
-                        {
-                            Trace.TraceInformation("Property: {0} Error: {1}",
-                                                    validationError.PropertyName,
-                                                    validationError.ErrorMessage);
-                        }
-                    }
-                }
+                db.Class1s.Add(class1);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(newtask);
+            return View(class1);
         }
 
-        // GET: Tasks/Edit/5
+        // GET: Class1/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Task task = db.Tasks.Find(id);
-            if (task == null)
+            Class1 class1 = db.Class1s.Find(id);
+            if (class1 == null)
             {
                 return HttpNotFound();
             }
-            return View(task);
+            return View(class1);
         }
 
-        // POST: Tasks/Edit/5
+        // POST: Class1/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "taskID,userID,name,progressIndex,progressMax,dueDate,createDate,startDate,completeDate,difficultyIndex,importanceIndex,taskStatus")] Task task)
+        public ActionResult Edit([Bind(Include = "ID,name,value")] Class1 class1)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(task).State = EntityState.Modified;
+                db.Entry(class1).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(task);
+            return View(class1);
         }
 
-        // GET: Tasks/Delete/5
+        // GET: Class1/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Task task = db.Tasks.Find(id);
-            if (task == null)
+            Class1 class1 = db.Class1s.Find(id);
+            if (class1 == null)
             {
                 return HttpNotFound();
             }
-            return View(task);
+            return View(class1);
         }
 
-        // POST: Tasks/Delete/5
+        // POST: Class1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int? id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Task task = db.Tasks.Find(id);
-            db.Tasks.Remove(task);
+            Class1 class1 = db.Class1s.Find(id);
+            db.Class1s.Remove(class1);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

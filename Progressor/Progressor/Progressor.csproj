@@ -194,6 +194,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\tablerow.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -259,6 +260,7 @@
     <Content Include="Views\Class1\Details.cshtml" />
     <Content Include="Views\Class1\Edit.cshtml" />
     <Content Include="Views\Class1\Index.cshtml" />
+    <Content Include="Views\Tasks\UpdateProgress.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

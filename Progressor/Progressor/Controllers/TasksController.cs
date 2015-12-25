@@ -10,6 +10,7 @@ using Progressor.Models;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity.Infrastructure;
 
 namespace Progressor.Controllers
 {
@@ -27,6 +28,10 @@ namespace Progressor.Controllers
                 {
                     tasklist.Add(t);
                 }
+            }
+            for (int i=0;i<tasklist.Count;++i)
+            {
+                tasklist[i].refreshStatus();
             }
             tasklist.Sort();
             return View(tasklist);
@@ -97,6 +102,8 @@ namespace Progressor.Controllers
             {
                 return HttpNotFound();
             }
+            //db.Tasks.Remove(task);
+            //db.SaveChanges();
             return View(task);
         }
 
@@ -105,12 +112,33 @@ namespace Progressor.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "taskID,userID,name,progressIndex,progressMax,dueDate,createDate,startDate,completeDate,difficultyIndex,importanceIndex,taskStatus")] Task task)
+        public ActionResult Edit(Task task)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(task).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Tasks.Add(task);
+
+                bool saveFailed;
+                do
+                {
+                    saveFailed = false;
+                    try
+                    {
+                        db.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException ex)
+                    {
+                        saveFailed = true;
+
+                        // Update original values from the database 
+                        //var entry = ex.Entries.Single();
+                        //entry.OriginalValues.SetValues(entry.GetDatabaseValues());
+                        ex.Entries.Single().Reload();
+                    }
+
+                } while (saveFailed);
+
                 return RedirectToAction("Index");
             }
             return View(task);
@@ -140,7 +168,57 @@ namespace Progressor.Controllers
             db.Tasks.Remove(task);
             db.SaveChanges();
             return RedirectToAction("Index");
+
+
         }
+
+        // GET: Tasks/UpdateProgress/5
+        public ActionResult UpdateProgress(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Task task = db.Tasks.Find(id);
+            if (task == null)
+                return HttpNotFound();
+
+            return View(task);
+        }
+
+        // POST: Tasks/UpdateProgress/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateProgress(Task task)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(task).State = EntityState.Modified;
+                //db.Tasks.Add(task);
+
+                bool saveFailed;
+                do
+                {
+                    saveFailed = false;
+                    try
+                    {
+                        db.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException ex)
+                    {
+                        saveFailed = true;
+                        
+                        ex.Entries.Single().Reload();
+                    }
+
+                } while (saveFailed);
+
+                return RedirectToAction("Index");
+            }
+            return View(task);
+        }
+
 
         protected override void Dispose(bool disposing)
         {

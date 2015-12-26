@@ -69,3 +69,7 @@ C:\Users\lihen\Documents\Visual Studio 2015\Projects\Progressor\Progressor\Progr
 C:\Users\lihen\Documents\Visual Studio 2015\Projects\Progressor\Progressor\Progressor\bin\MySql.Data.dll
 C:\Users\lihen\Documents\Visual Studio 2015\Projects\Progressor\Progressor\Progressor\bin\MySql.Data.Entity.EF6.dll
 C:\Users\lihen\Documents\Visual Studio 2015\Projects\Progressor\Progressor\Progressor\obj\Debug\Progressor.csprojResolveAssemblyReference.cache
+C:\Users\lihen\Documents\Visual Studio 2015\Projects\Progressor\Progressor\Progressor\bin\EO.Web.dll
+C:\Users\lihen\Documents\Visual Studio 2015\Projects\Progressor\Progressor\Progressor\bin\EO.Base.dll
+C:\Users\lihen\Documents\Visual Studio 2015\Projects\Progressor\Progressor\Progressor\bin\EO.Web.xml
+C:\Users\lihen\Documents\Visual Studio 2015\Projects\Progressor\Progressor\Progressor\bin\EO.Base.xml

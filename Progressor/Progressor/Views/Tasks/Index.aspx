@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="Progressor.Views.Tasks.Index" %>
 
+<%@ Register assembly="EO.Web" namespace="EO.Web" tagprefix="eo" %>
+
 <!DOCTYPE html>
 
 <%--<%@ Page Language="C#" %>--%>
@@ -31,16 +33,15 @@
         return lvl;
     }
 
-    protected string getProgressStr(Progressor.Models.Task t)
+    protected int getProgress(Progressor.Models.Task t)
     {
         if (t.progressMax.HasValue && t.progressIndex.HasValue)
         {
-            string str = "" + ((Decimal)(1.0 * t.progressIndex / t.progressMax * 100)).ToString("#.##") + "%";
-            return str;
+            return ((int)(1.0 * t.progressIndex / t.progressMax * 100));
         }
         else
         {
-            return "-";
+            return 0;
         }
     }
 
@@ -57,8 +58,7 @@
         }
     }
 
-
-
+    
 </script>
 
 
@@ -83,21 +83,18 @@
                 <tr class="<% =getPriLvl(item).ToString() %>">
                     <td><% =item.name.ToString() %></td>
                     <td><% =item.taskStatus.ToString() %></td>
-                    <td><% =getProgressStr(item) %></td>
-                    <td><asp:UpdateProgress </td>
+                    <%--<td><% =getProgressStr(item) %></td>--%>
+                    <td><eo:ProgressBar runat="server" Margin="0,0,0,0" Height="25px" Width="100px" HorizontalAlignment="Left" Value= '<%# getPriLvl(item)%>' ShowContent="True" ControlSkinID="Style1" /></td>
                     <td><% =getDueStr(item)%></td>
                     <td><% =item.getPriorityIndex()%></td>
 
-                    <td>
-                        <%-- @Html.ActionLink("Update Progress", "UpdateProgress", new { id = item.ID}) |
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })--%>
-                    </td>
                 </tr>
 
                 <% } %>
             </table>
+            
+
+
         </div>
     </form>
 </body>

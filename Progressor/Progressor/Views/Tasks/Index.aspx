@@ -63,6 +63,7 @@
 
 
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
@@ -78,13 +79,28 @@
                     <th>Due</th>
                     <th>Priority</th>
                 </tr>
-                <%foreach (var item in this.ViewData.Model)
+                <%foreach (Progressor.Models.Task item in this.ViewData.Model)
                     { %>
+                <script>
+                            var x = "width: 12 %";
+                        </script>
+
                 <tr class="<% =getPriLvl(item).ToString() %>">
                     <td><% =item.name.ToString() %></td>
                     <td><% =item.taskStatus.ToString() %></td>
-                    <%--<td><% =getProgressStr(item) %></td>--%>
-                    <td><eo:ProgressBar runat="server" Margin="0,0,0,0" Height="25px" Width="100px" HorizontalAlignment="Left" Value= '<%# getPriLvl(item)%>' ShowContent="True" ControlSkinID="Style1" /></td>
+                    <td>
+                        <table class="table">
+                            <%for (int i = 0; i < getProgress(item); ++i)
+                                {%>
+                                    <tr style="background-color: black; width: 1%" />
+                               <% } %>
+                            <%for (int i = getProgress(item); i < 100; ++i)
+                                {%>
+                                    <tr style="background-color: white; width: 1%" />
+                               <% } %>
+                            
+                        </table>
+                    </td>
                     <td><% =getDueStr(item)%></td>
                     <td><% =item.getPriorityIndex()%></td>
 
@@ -102,7 +118,7 @@
 
 
 <style>
-    tr.row-lvl0 {
+    /*tr.row-lvl0 {
         background-color: lightgray;
     }
 
@@ -120,5 +136,22 @@
 
     tr.row-lvl4 {
         background-color: orangered;
+    }*/
+
+    td {
+        border: 1px solid #ccc;
     }
+
+    td {
+        position: relative;
+    }
+
+    .bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #8ef;
+    z-index: -1;
+}
 </style>

@@ -86,7 +86,11 @@ namespace Progressor.Controllers
                 return RedirectToAction("Login");
             }
             
-            
+            if (loginInfo.Email == null)
+            {
+                loginInfo.Email = loginInfo.DefaultUserName + "@facebook.com";
+            }
+
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
             switch (result)
@@ -104,7 +108,7 @@ namespace Progressor.Controllers
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
                     //return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
 
-                    return await ExternalLoginConfirmation(loginInfo.DefaultUserName, loginInfo.Email, null);
+                    return await ExternalLoginConfirmation(loginInfo.DefaultUserName, loginInfo.Email, "/Tasks/Index");
             }
         }
 
@@ -113,7 +117,7 @@ namespace Progressor.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ExternalLoginConfirmation(string username, string email , string returnUrl)
+        public async Task<ActionResult> ExternalLoginConfirmation(string username, string email, string returnUrl)
         {
             if (User.Identity.IsAuthenticated)
             {

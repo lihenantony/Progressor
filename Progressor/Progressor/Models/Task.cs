@@ -134,13 +134,14 @@ namespace Progressor.Models
             // from due dates
             if (dueDate.HasValue)
             {
-                p *= ((DateTime.Now-createDate).TotalDays + 1) / (dueDate - createDate).Value.TotalDays * 10;
+                double d = ((DateTime.Now - createDate).TotalDays + 1) / (dueDate - createDate).Value.TotalDays * 10;
+                p *= d;
             }
 
             // from progress
             if (progressMax.HasValue && progressIndex.HasValue)
             {
-                double t = (progressMax.Value - progressIndex.Value) / (progressMax.Value) * 10.0 + 1;
+                double t = (1.0 * progressMax.Value - progressIndex.Value) / (progressMax.Value) * 10.0 + 1;
                 p *= t;
             }
 

@@ -1,0 +1,101 @@
+﻿@model Progressor.Models.Task
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Task</h4>
+
+    @Html.HiddenFor(model => model.userID)
+
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.progressIndex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.progressIndex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.progressMax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.progressMax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.completeDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.completeDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.difficultyIndex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.difficultyIndex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.importanceIndex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.importanceIndex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.taskStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.taskStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

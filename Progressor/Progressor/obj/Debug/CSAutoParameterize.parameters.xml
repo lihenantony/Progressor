@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="Class1DBContext-Web.config Connection String" description="Class1DBContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-Progressor-20151222021758.mdf;Initial Catalog=aspnet-Progressor-20151222021758;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\lihen\\Documents\\Visual\ Studio\ 2015\\Projects\\Progressor\\Progressor\\Progressor\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Class1DBContext']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Database=ProgressorDB;Data Source=us-cdbr-azure-central-a.cloudapp.net;User Id=be066a520560d7;Password=85694037" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\lihen\\Documents\\Visual\ Studio\ 2015\\Projects\\Progressor\\Progressor\\Progressor\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="TaskDBContext-Web.config Connection String" description="TaskDBContext Connection String used in web.config by the application to access the database." defaultValue="Database=ProgressorDB;Data Source=us-cdbr-azure-central-a.cloudapp.net;User Id=be066a520560d7;Password=85694037" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\lihen\\Documents\\Visual\ Studio\ 2015\\Projects\\Progressor\\Progressor\\Progressor\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='TaskDBContext']/@connectionString" />
+  </parameter>
+  <parameter name="Progressor.Models.ApplicationDbContext-Web.config Connection String" description="Progressor.Models.ApplicationDbContext Connection String used in web.config by the application to access the database." defaultValue="Progressor.Models.ApplicationDbContext_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\lihen\\Documents\\Visual\ Studio\ 2015\\Projects\\Progressor\\Progressor\\Progressor\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Progressor.Models.ApplicationDbContext']/@connectionString" />
+  </parameter>
+</parameters>

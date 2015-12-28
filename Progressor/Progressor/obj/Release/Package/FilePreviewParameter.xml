@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="progressor" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\lihen\\Documents\\Visual\ Studio\ 2015\\Projects\\Progressor\\Progressor\\Progressor\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\lihen\\Documents\\Visual\ Studio\ 2015\\Projects\\Progressor\\Progressor\\Progressor\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="Class1DBContext-Web.config Connection String" description="" value="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-Progressor-20151222021758.mdf;Initial Catalog=aspnet-Progressor-20151222021758;Integrated Security=True" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\lihen\\Documents\\Visual\ Studio\ 2015\\Projects\\Progressor\\Progressor\\Progressor\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Class1DBContext']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Database=ProgressorDB;Data Source=us-cdbr-azure-central-a.cloudapp.net;User Id=be066a520560d7;Password=85694037" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\lihen\\Documents\\Visual\ Studio\ 2015\\Projects\\Progressor\\Progressor\\Progressor\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="Progressor.Models.ApplicationDbContext-Web.config Connection String" description="" value="Progressor.Models.ApplicationDbContext_ConnectionString" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\lihen\\Documents\\Visual\ Studio\ 2015\\Projects\\Progressor\\Progressor\\Progressor\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Progressor.Models.ApplicationDbContext']/@connectionString" />
+  </parameter>
+  <parameter name="TaskDBContext-Web.config Connection String" description="TaskDBContext Connection String used in web.config by the application to access the database." value="Database=ProgressorDB;Data Source=us-cdbr-azure-central-a.cloudapp.net;User Id=be066a520560d7;Password=85694037" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\lihen\\Documents\\Visual\ Studio\ 2015\\Projects\\Progressor\\Progressor\\Progressor\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='TaskDBContext']/@connectionString" />
+  </parameter>
+</parameters>

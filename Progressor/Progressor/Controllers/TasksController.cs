@@ -21,6 +21,11 @@ namespace Progressor.Controllers
         // GET: Tasks
         public ActionResult Index()
         {
+            if (!HttpContext.User.Identity.IsAuthenticated)
+            {
+                return Redirect("Home/Index");
+            }
+
             List<Task> tasklist = new List<Task>();
             foreach (Task t in db.Tasks.ToList())
             {
@@ -40,6 +45,11 @@ namespace Progressor.Controllers
         // GET: Tasks/Details/5
         public ActionResult Details(int? id)
         {
+            if (!HttpContext.User.Identity.IsAuthenticated)
+            {
+                return Redirect("Home/Index");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -56,6 +66,11 @@ namespace Progressor.Controllers
         // GET: Tasks/Create
         public ActionResult Create()
         {
+            if (!HttpContext.User.Identity.IsAuthenticated)
+            {
+                return Redirect("Home/Index");
+            }
+
             return View();
         }
 
@@ -93,6 +108,11 @@ namespace Progressor.Controllers
         // GET: Tasks/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (!HttpContext.User.Identity.IsAuthenticated)
+            {
+                return Redirect("Home/Index");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -147,6 +167,11 @@ namespace Progressor.Controllers
         // GET: Tasks/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!HttpContext.User.Identity.IsAuthenticated)
+            {
+                return Redirect("Home/Index");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -175,6 +200,11 @@ namespace Progressor.Controllers
         // GET: Tasks/UpdateProgress/5
         public ActionResult UpdateProgress(int? id)
         {
+            if (!HttpContext.User.Identity.IsAuthenticated)
+            {
+                return Redirect("Home/Index");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

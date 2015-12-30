@@ -6,18 +6,11 @@
 
 <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Are you sure you want to delete this task?</h3>
 <div>
-    <h4>Task</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.userID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.userID)
-        </dd>
+        @Html.HiddenFor(model => model.userID)
 
         <dt>
             @Html.DisplayNameFor(model => model.name)
@@ -40,7 +33,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.progressMax)
+            @if (Model.progressMax <= 0)
+            {
+                <text>-</text>
+            }
+            else
+            {
+                <text>@Model.progressMax</text>
+            }
         </dd>
 
         <dt>
@@ -48,7 +48,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.dueDate)
+            @Html.DisplayFor(model => model.dueDate.Value.ToShortDateString())
         </dd>
 
         <dt>
@@ -56,7 +56,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.createDate)
+            @if (Model.createDate == DateTime.MinValue)
+            {
+                <text>-</text>
+            }
+            else
+            {
+                <text>@Model.createDate.ToShortDateString()</text>
+            }
         </dd>
 
         <dt>
@@ -64,7 +71,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.startDate)
+            @if (Model.startDate == DateTime.MinValue)
+            {
+                <text>-</text>
+            }
+            else
+            {
+                <text>@Model.startDate.ToShortDateString()</text>
+            }
         </dd>
 
         <dt>
@@ -72,7 +86,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.completeDate)
+            @if (Model.completeDate == DateTime.MinValue)
+            {
+                <text>-</text>
+            }
+            else
+            {
+                <text>@Model.completeDate.ToShortDateString()</text>
+            }
         </dd>
 
         <dt>
@@ -80,7 +101,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.difficultyIndex)
+            @if (Model.difficultyIndex <= 0)
+            {
+                <text>-</text>
+            }
+            else
+            {
+                <text>@Model.difficultyIndex</text>
+            }
         </dd>
 
         <dt>
@@ -88,7 +116,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.importanceIndex)
+            @if (Model.importanceIndex <= 0)
+            {
+                <text>-</text>
+            }
+            else
+            {
+                <text>@Model.importanceIndex</text>
+            }
         </dd>
 
         <dt>

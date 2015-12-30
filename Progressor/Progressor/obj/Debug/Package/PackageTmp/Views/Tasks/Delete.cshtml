@@ -33,7 +33,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.progressMax)
+            @if (Model.progressMax <= 0)
+            {
+                <text>-</text>
+            }
+            else
+            {
+                <text>@Model.progressMax</text>
+            }
         </dd>
 
         <dt>
@@ -41,7 +48,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.dueDate)
+            @Model.dueDate.Value.ToShortDateString()
         </dd>
 
         <dt>
@@ -49,7 +56,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.createDate)
+            @if (Model.createDate == DateTime.MinValue)
+            {
+                <text>-</text>
+            }
+            else
+            {
+                <text>@Model.createDate.ToShortDateString()</text>
+            }
         </dd>
 
         <dt>
@@ -57,7 +71,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.startDate)
+            @if (Model.startDate == DateTime.MinValue)
+            {
+                <text>-</text>
+            }
+            else
+            {
+                <text>@Model.startDate.ToShortDateString()</text>
+            }
         </dd>
 
         <dt>
@@ -65,7 +86,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.completeDate)
+            @if (Model.completeDate == DateTime.MinValue)
+            {
+                <text>-</text>
+            }
+            else
+            {
+                <text>@Model.completeDate.ToShortDateString()</text>
+            }
         </dd>
 
         <dt>
@@ -73,7 +101,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.difficultyIndex)
+            @if (Model.difficultyIndex <= 0)
+            {
+                <text>-</text>
+            }
+            else
+            {
+                <text>@Model.difficultyIndex</text>
+            }
         </dd>
 
         <dt>
@@ -81,7 +116,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.importanceIndex)
+            @if (Model.importanceIndex <= 0)
+            {
+                <text>-</text>
+            }
+            else
+            {
+                <text>@Model.importanceIndex</text>
+            }
         </dd>
 
         <dt>

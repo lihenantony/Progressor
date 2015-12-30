@@ -225,8 +225,15 @@ namespace Progressor.Controllers
         // POST: Tasks/UpdateProgress/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpdateProgress(Task task)
+        public ActionResult UpdateProgress(Task task, string cmd)
         {
+            if (cmd == "MarkComplete")
+            {
+                db.Tasks.Find(task.ID).progressIndex = db.Tasks.Find(task.ID).progressMax;
+                db.SaveChanges();
+                return RedirectToAction("Index"); ;
+
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(task).State = EntityState.Modified;

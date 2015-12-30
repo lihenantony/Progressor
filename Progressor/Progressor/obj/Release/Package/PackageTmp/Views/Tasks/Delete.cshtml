@@ -48,7 +48,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.dueDate.Value.ToShortDateString())
+            @if (!Model.dueDate.HasValue || Model.dueDate == DateTime.MinValue)
+            {
+                <text>-</text>
+            }
+            else
+            {
+                <text>@Model.dueDate.Value.ToShortDateString()</text>
+            }
         </dd>
 
         <dt>

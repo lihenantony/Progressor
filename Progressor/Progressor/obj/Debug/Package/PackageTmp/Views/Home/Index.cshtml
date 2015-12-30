@@ -9,17 +9,6 @@
     <p class="lead">Progressor is an online web app that helps you keep track of your projects, tasks, and assignments. It keeps the data in the cloud and priortizes tasks.</p>
     @*<p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
 
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!-- progressorAd -->
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-2580388471800513"
-         data-ad-slot="7252209586"
-         data-ad-format="auto"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-
 
 </div>
 
@@ -27,12 +16,12 @@
 
 @if (Request.IsAuthenticated)
 {
-    <p> Click @Html.ActionLink("Tasking Dashboard", "Index", "Tasks") to head over to your tasking dashboard.</p>
+    <p> Go to your @Html.ActionLink("Tasking Dashboard", "Index", "Tasks").</p>
 }
 else
 {
     <p>
-        Click @Html.ActionLink("Log In", "Login", "Account") to log in or register new account with single click.
+        @Html.ActionLink("Register / Log In", "Login", "Account") to get started.
     </p>
 }
 

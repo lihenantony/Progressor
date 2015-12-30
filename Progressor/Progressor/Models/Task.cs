@@ -74,6 +74,9 @@ namespace Progressor.Models
                     taskStatus = "Completed";
                     if (completeDate == DateTime.MinValue)
                         completeDate = DateTime.Now;
+
+                    if (startDate == DateTime.MinValue)
+                        startDate = DateTime.Now;
                 }
                 else
                 {

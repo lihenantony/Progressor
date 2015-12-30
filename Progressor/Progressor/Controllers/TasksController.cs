@@ -25,6 +25,11 @@ namespace Progressor.Controllers
             {
                 return Redirect("Home/Index");
             }
+            for (int i=0;i<db.Tasks.ToList().Count;++i)
+            {
+                db.Tasks.ToList()[i].refreshStatus();
+            }
+            db.SaveChanges();
 
             List<Task> tasklist = new List<Task>();
             foreach (Task t in db.Tasks.ToList())

@@ -72,10 +72,14 @@ namespace Progressor.Models
                 else if (progressIndex >= progressMax)
                 {
                     taskStatus = "Completed";
+                    if (completeDate == DateTime.MinValue)
+                        completeDate = DateTime.Now;
                 }
                 else
                 {
                     taskStatus = "In Progress";
+                    if (startDate == DateTime.MinValue)
+                        startDate = DateTime.Now;
                 }
             }
             else

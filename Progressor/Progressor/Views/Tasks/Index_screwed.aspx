@@ -95,14 +95,6 @@
                     <td><% =item.name.ToString() %></td>
                     <td><% =item.taskStatus.ToString() %></td>
                     <td>
-                        <script runat="server">
-                            protected void setval(){
-                                setValue(item);
-                            }
-                            
-                        </script>
-
-                        <eo:ProgressBar ID ="wtfid" Width ="100px" Maximum="100" Minimum="0" runat="server" ControlSkinID ="Traditional" ShowPercentage ="true" OnLoad="setval()"></eo:ProgressBar>
                         
                     </td>
                     <td><% =getDueStr(item)%></td>

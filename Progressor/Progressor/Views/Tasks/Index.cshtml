@@ -102,7 +102,7 @@
             @{
                 if (item.dueDate.HasValue)
                 {
-                    string str = "" + (int)(item.dueDate.Value - DateTime.Now).TotalDays;
+                    string str = "" + ((int)(item.dueDate.Value - DateTime.Now).TotalDays +2);
                     <text>@str</text>
                 }
                 else

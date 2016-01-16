@@ -100,9 +100,13 @@
         </td>*@
         <td>
             @{
-                if (item.dueDate.HasValue)
+                if (item.taskStatus=="Completed")
                 {
-                    string str = "" + ((int)(item.dueDate.Value - DateTime.Now).TotalDays +2);
+                    <text>-</text>
+                }
+                else if (item.dueDate.HasValue)
+                {
+                    string str = "" + ((int)(item.dueDate.Value - DateTime.Now.Date).TotalDays);
                     <text>@str</text>
                 }
                 else

@@ -141,7 +141,7 @@ namespace Progressor.Models
             // from due dates
             if (dueDate.HasValue)
             {
-                double d = ((DateTime.Now - createDate).TotalDays + 1) / (dueDate - createDate).Value.TotalDays * 10;
+                double d = ((DateTime.Now.Date - createDate.Date).TotalDays + 1) / (dueDate.Value.Date - createDate.Date).TotalDays * 10;
                 p *= d;
             }
 

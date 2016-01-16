@@ -1,4 +1,7 @@
 ﻿@using Microsoft.AspNet.Identity
+@model Progressor.Models.ExternalLoginListViewModel
+@using Microsoft.Owin.Security
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -7,7 +10,7 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Tasks")
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + " !", "Index", "Tasks")
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
@@ -17,6 +20,23 @@ else
 {
     <ul class="nav navbar-nav navbar-right">
         @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
-        <li>@Html.ActionLink("Register/Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@*@Html.ActionLink("Register/Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })*@
+        
+
+            @using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }))
+            {
+                @Html.AntiForgeryToken()
+
+                var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+
+                foreach (AuthenticationDescription p in loginProviders)
+                {
+                    <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="@p.Caption">Log in with @p.AuthenticationType</button>
+                }
+            }
+
+
+
+        </li>
     </ul>
 }
